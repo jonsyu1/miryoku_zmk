@@ -195,6 +195,7 @@ jobs:
             outboard_to=''
             outboard_branches=''
             outboard_modules=''
+            outboard_patch=''
             outboard_file="${GITHUB_WORKSPACE}/miryoku_zmk/.github/workflows/outboards/$outboard"
             if [ -f "$outboard_file" ]
             then
@@ -208,6 +209,10 @@ jobs:
                   outboard_repository="https://github.com/$outboard_repository.git"
                 fi
                 git clone -b "$outboard_ref" --depth 1 "$outboard_repository" "$outboard_dir"
+                if [ -n "$outboard_patch" ]
+                then
+                  git -C "$outboard_dir" apply "${GITHUB_WORKSPACE}/miryoku_zmk/$outboard_patch"
+                fi
                 to="${GITHUB_WORKSPACE}/miryoku_zmk/config/$outboard_to"
                 mkdir -p `dirname "$to"`
                 ln -sr "$outboard_dir/$outboard_from" "$to"

@@ -5,3 +5,4 @@ outboard_repository=ReFil/zmk
 outboard_ref=advantage360
 outboard_from=app/boards/arm/adv360pro
 outboard_to=boards/arm/adv360pro
+outboard_patch=.github/patches/adv360pro-kconfig.patch

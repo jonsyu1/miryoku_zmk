@@ -1,0 +1,60 @@
+--- a/app/boards/arm/adv360pro/Kconfig
++++ b/app/boards/arm/adv360pro/Kconfig
+@@ -5,3 +5,17 @@
+     select SOC_DCDC_NRF52X
+     default y
+     depends on BOARD_ADV360PRO_LEFT || BOARD_ADV360PRO_RIGHT
++
++config BOARD_ADV360PRO_LEFT
++    bool
++    default y if "$(BOARD)" = "adv360pro_left"
++
++config BOARD_ADV360PRO_RIGHT
++    bool
++    default y if "$(BOARD)" = "adv360pro_right"
++
++config SOC_SERIES_NRF52X
++    default y if BOARD_ADV360PRO_LEFT || BOARD_ADV360PRO_RIGHT
++
++config SOC_NRF52840_QIAA
++    default y if BOARD_ADV360PRO_LEFT || BOARD_ADV360PRO_RIGHT
+--- a/app/boards/arm/adv360pro/adv360pro_left_defconfig
++++ b/app/boards/arm/adv360pro/adv360pro_left_defconfig
+@@ -3,9 +3,6 @@
+ # SPDX-License-Identifier: MIT
+ #
+ 
+-CONFIG_SOC_SERIES_NRF52X=y
+-CONFIG_SOC_NRF52840_QIAA=y
+-CONFIG_BOARD_ADV360PRO_LEFT=y
+ 
+ # Enable MPU
+ CONFIG_ARM_MPU=y
+@@ -32,7 +29,6 @@
+ CONFIG_CLOCK_CONTROL_NRF_K32SRC_150PPM=y
+ 
+ #RGB leds config
+-CONFIG_WS2812_STRIP=y
+ CONFIG_ZMK_RGB_UNDERGLOW=y
+ CONFIG_ZMK_RGB_UNDERGLOW_EXT_POWER=y
+ CONFIG_ZMK_RGB_UNDERGLOW_ON_START=n
+--- a/app/boards/arm/adv360pro/adv360pro_right_defconfig
++++ b/app/boards/arm/adv360pro/adv360pro_right_defconfig
+@@ -3,9 +3,6 @@
+ # SPDX-License-Identifier: MIT
+ #
+ 
+-CONFIG_SOC_SERIES_NRF52X=y
+-CONFIG_SOC_NRF52840_QIAA=y
+-CONFIG_BOARD_ADV360PRO_RIGHT=y
+ 
+ # Enable MPU
+ CONFIG_ARM_MPU=y
+@@ -32,7 +29,6 @@
+ CONFIG_CLOCK_CONTROL_NRF_K32SRC_150PPM=y
+ 
+ #RGB leds config
+-CONFIG_WS2812_STRIP=y
+ CONFIG_ZMK_RGB_UNDERGLOW=y
+ CONFIG_ZMK_RGB_UNDERGLOW_EXT_POWER=y
+ CONFIG_ZMK_RGB_UNDERGLOW_ON_START=n

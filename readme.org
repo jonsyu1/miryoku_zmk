@@ -255,6 +255,10 @@ The path to the directory containing the board or shield definition.
 The path to the directory below ~config/~ where the board or shield definition should be located.
 
 
+**** outboard_patch
+
+Optional path to a patch file relative to the Miryoku ZMK repository root. The workflow applies it to the cloned outboard repository before creating the symlink. Patch paths are relative to the cloned repository root. A patch failure stops the build.
+
 **** outboard_branches
 
 Specify if the board or shield requires or is defined in one or more ZMK forks. Use is the same as for the workflow [[#branches][branches]] option. 
